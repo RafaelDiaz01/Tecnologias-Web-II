@@ -10,7 +10,7 @@ def create_app():
     # Cargar una configuracion
     app.config.from_object('config.Config')
     
-    # Registar blueprint
-    app.registrar_bp(usuarios_bp, url_prefix = '/usuarios')
+    # Registrar blueprint
+    app.register_blueprint(usuarios_bp, url_prefix='/usuarios')
     
     return app
