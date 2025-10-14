@@ -38,7 +38,7 @@ def obtener_usuario_por_id(usuario_id):
 # Actualizar informacion de un usuario
 @usuarios_bp.route('/<int:usuario_id>', methods=['PUT'])
 def actualizar_usuario(usuario_id):
-    # obtener_usuario_por_id devuelve JSON; buscamos el objeto en la lista
+    # Obtener_usuario_por_id devuelve JSON; buscamos el objeto en la lista
     usuario_obj = next((u for u in usuarios if u['id'] == usuario_id), None)
     if usuario_obj is None:
         return jsonify({'error': 'Usuario no encontrado'}), 404
@@ -50,4 +50,4 @@ def actualizar_usuario(usuario_id):
 
     usuario_obj.update(datos_actualizados)
 
-    return jsonify({'mensaje': 'Usuario actualizado exitosamente', 'usuario': usuario_obj})
+    return jsonify({'Mensaje': 'Usuario actualizado exitosamente', 'Usuario': usuario_obj})
