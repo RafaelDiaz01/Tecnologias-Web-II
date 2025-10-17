@@ -24,9 +24,6 @@ def crear_usuario():
 
     return jsonify({'mensaje': 'Usuario creado exitosamente ', 'usuario': nuevo}), 201
 
-# Correr app
-# Probar en Postman
-
 # Buscar un usuario por id
 @usuarios_bp.route('/<int:usuario_id>', methods=['GET'])
 def obtener_usuario_por_id(usuario_id):
