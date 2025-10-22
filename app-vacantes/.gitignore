@@ -1,0 +1,14 @@
+# ...existing code...
+# Entorno virtual
+venv/
+# Variables de entorno
+.env
+
+# Ignorar archivos comunes de Python/IDE
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.vscode/
+# ...existing code...
