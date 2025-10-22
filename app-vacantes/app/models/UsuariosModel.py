@@ -14,3 +14,15 @@ class UsuariosModel(db.Model):
             'nombre_usuario': self.nombre_usuario,
             'password': self.password
         }
+    
+    # Establecer relación con RolModel (uno a muchos)
+    rol_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
+    rol = db.relationship('RolModel', back_populates='usuarios')
+    
+
+class RolModel(db.Model):
+    __tablename__ = 'roles'  # Nombre de la tabla en la base de datos.
+
+    id = db.Column(db.Integer, primary_key=True) # Llave primaria
+    nombre_rol = db.Column(db.String(50), nullable=False, unique=True) # Campo obligatorio
+    usuarios = db.relationship('UsuariosModel', back_populates='rol', lazy=True) # Relación inversa
