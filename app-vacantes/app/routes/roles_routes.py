@@ -21,3 +21,21 @@ def obtener_roles():
     return jsonify(roles_json), 200
 
 # Investigar como agregar un registro en la base de datos mediante sqlalchemy
+@roles_bp.route('/roles', methods=['POST'])
+def crear_rol():
+    datos = request.get_json() or {}
+
+    if not datos.get('nombre_rol'):
+        return jsonify({'error': 'Faltan campos obligatorios'}), 400
+
+    nuevo_rol = RolModel(
+        nombre_rol = datos['nombre_rol']
+    )
+
+    db.session.add(nuevo_rol)
+    db.session.commit() # Guarda los cambios en la base de datos
+
+    return jsonify({'mensaje': 'Rol creado exitosamente', 'rol': {
+        'id': nuevo_rol.id,
+        'nombre_rol': nuevo_rol.nombre_rol
+    }}), 201
