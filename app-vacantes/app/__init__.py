@@ -6,7 +6,7 @@ load_dotenv()
 
 from app.routes.usuarios_routes import usuarios_bp
 from app.routes.roles_routes import roles_bp
-from app.extensions import db
+from app.extensions import db, jwt
 from config import Config
 from app.models.UsuariosModel import UsuariosModel  # Importar el modelo para crear la tabla
 
@@ -20,8 +20,9 @@ def create_app():
     # Cargar una configuracion
     app.config.from_object(Config)
 
-    # Inicializar las extensiones (después de cargar la configuración)
+    # Inicializar las extensiones (después de cargar la configuración), reciben el contexto de la app
     db.init_app(app)
+    jwt.init_app(app) 
     
     # Para probar de manera local: crear/actualizar las tablas sólo si la conexión funciona.
     with app.app_context():
