@@ -4,7 +4,7 @@ from app.models.UsuariosModel import RolModel
 
 roles_bp = Blueprint('roles', __name__)
 
-@roles_bp.route('/roles', methods=['GET'])
+@roles_bp.route('/', methods=['GET'])
 def obtener_roles():
     # Hacer querys desde instancia
     # query = db.session.query().filter()
@@ -12,16 +12,16 @@ def obtener_roles():
 
     # Convertir los datos a un JSON
     roles_json = [ {
-        'id': r.id,
-        'nombre_rol': r.nombre_rol,
-        'usuarios' : [u.nombre_usuario for u in r.usuarios]
-    
-    } for r in roles_bp
+        'id': roles.id,
+        'nombre_rol': roles.nombre_rol,
+        'usuarios' : [u.nombre_usuario for u in roles.usuarios]
+
+    } for roles in roles
     ]
     return jsonify(roles_json), 200
 
 # Investigar como agregar un registro en la base de datos mediante sqlalchemy
-@roles_bp.route('/roles', methods=['POST'])
+@roles_bp.route('/crear', methods=['POST'])
 def crear_rol():
     datos = request.get_json() or {}
 
@@ -31,6 +31,11 @@ def crear_rol():
     nuevo_rol = RolModel(
         nombre_rol = datos['nombre_rol']
     )
+    
+    # Validar que el nombre del rol no se repita
+    nombre_repetido = RolModel.query.filter_by(nombre_rol=datos['nombre_rol']).first() # Busca el primer registro que coincida.
+    if nombre_repetido:
+        return jsonify({'error': 'El nombre del rol ya existe'}), 400
 
     db.session.add(nuevo_rol)
     db.session.commit() # Guarda los cambios en la base de datos
