@@ -2,6 +2,7 @@
 
 from flask import Blueprint, jsonify, request
 from app.data import usuarios
+from app.service.UsuarioService import UsuarioService
 
 # Se crea el Blueprint
 usuarios_bp = Blueprint('usuarios', __name__)
@@ -9,14 +10,26 @@ usuarios_bp = Blueprint('usuarios', __name__)
 # Listar usuarios
 @usuarios_bp.route('/', methods=['GET'])
 def obtener_todos():
+    usuarios = UsuarioService.obtener_usuarios()
+    
+    # Verificar si hay usuarios, si no hay, retornar un mensaje adecuado.
+    if not usuarios:
+        return jsonify({'mensaje': 'No hay usuarios registrados'}), 404
+    
     return jsonify(usuarios)
 
 # Crear usuarios
 @usuarios_bp.route('/', methods=['POST'])
 def crear_usuario():
     nuevo = request.get_json() or {}
+    
+    respuesta = UsuarioService.crear_usuario(
+        nombre_usuario=nuevo.get('nombre_usuario'),
+        password=nuevo.get('password'),
+        rol_id=nuevo.get('rol_id')
+    )
 
-    if not nuevo.get('nombre') or not nuevo.get('password'):
+    if not nuevo.get('nombre_usuario') or not nuevo.get('password'):
         return jsonify({'error': 'Faltan campo obligatorios'}), 400
 
     nuevo['id'] = len(usuarios) + 1
