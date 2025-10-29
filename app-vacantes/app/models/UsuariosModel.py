@@ -26,3 +26,9 @@ class RolModel(db.Model):
     id = db.Column(db.Integer, primary_key=True) # Llave primaria
     nombre_rol = db.Column(db.String(50), nullable=False, unique=True) # Campo obligatorio
     usuarios = db.relationship('UsuariosModel', back_populates='rol', lazy=True) # Relación inversa
+    def to_dict(self):
+        """Serializar RolModel a diccionario."""
+        return {
+            'id': self.id,
+            'nombre_rol': self.nombre_rol
+        }
