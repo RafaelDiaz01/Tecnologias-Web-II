@@ -8,7 +8,8 @@ class UsuarioService:
     @staticmethod
     def obtener_usuarios():
         usuarios = UsuariosModel.query.all()
-        return usuarios
+        # Devolver lista serializable (dict) en lugar de objetos SQLAlchemy
+        return [u.to_dict() for u in usuarios]
     
     @staticmethod
     def crear_usuario(nombre_usuario, password, rol_id):
@@ -21,12 +22,22 @@ class UsuarioService:
 
         nuevo_usuario = UsuariosModel(
             nombre_usuario=nombre_usuario,
-            password=password
+            password=password,
+            rol_id=rol_id
         )
-        
-        db.session.add(nuevo_usuario)
-        db.session.commit()
-        return jsonify({'mensaje': 'Usuario creado exitosamente', 'usuario': nuevo_usuario.to_dict()}), 201
+
+        try:
+            db.session.add(nuevo_usuario)
+            db.session.commit()
+            return jsonify({'mensaje': 'Usuario creado exitosamente', 'usuario': nuevo_usuario.to_dict()}), 201
+        except Exception as e:
+            # Si hay un error al commitear, hacer rollback para dejar la sesión limpia
+            try:
+                db.session.rollback()
+            except Exception:
+                pass
+            # Devolver detalle mínimo para depuración (no exponer en producción)
+            return jsonify({'error': 'Error al guardar el usuario en la base de datos', 'detalle': str(e)}), 500
     
     # Buscar usuario por id
     @staticmethod

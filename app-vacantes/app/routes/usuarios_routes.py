@@ -19,23 +19,16 @@ def obtener_todos():
     return jsonify(usuarios)
 
 # Crear usuarios
-@usuarios_bp.route('/', methods=['POST'])
+@usuarios_bp.route('/crear', methods=['POST'])
 def crear_usuario():
     nuevo = request.get_json() or {}
     
     respuesta = UsuarioService.crear_usuario(
-        nombre_usuario=nuevo.get('nombre_usuario'),
-        password=nuevo.get('password'),
-        rol_id=nuevo.get('rol_id')
+        nombre_usuario = nuevo.get('nombre_usuario'),
+        password = nuevo.get('password'),
+        rol_id = nuevo.get('rol_id')
     )
-
-    if not nuevo.get('nombre_usuario') or not nuevo.get('password'):
-        return jsonify({'error': 'Faltan campo obligatorios'}), 400
-
-    nuevo['id'] = len(usuarios) + 1
-    usuarios.append(nuevo)
-
-    return jsonify({'mensaje': 'Usuario creado exitosamente ', 'usuario': nuevo}), 201
+    return respuesta
 
 # Buscar un usuario por id
 @usuarios_bp.route('/<int:usuario_id>', methods=['GET'])

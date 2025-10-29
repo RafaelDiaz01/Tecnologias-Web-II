@@ -29,24 +29,10 @@ def obtener_roles():
 # Crear un nuevo rol
 @roles_bp.route('/crear', methods=['POST'])
 def crear_rol():
-    datos = request.get_json() or {}
+    nuevo = request.get_json() or {}
 
-    if not datos.get('nombre_rol'):
-        return jsonify({'error': 'Faltan campos obligatorios'}), 400
-
-    nuevo_rol = RolModel(
-        nombre_rol = datos['nombre_rol']
-    )
+    respuesta = RolService.crear_rol(
+        nombre_rol=nuevo.get('nombre_rol'))
+    return respuesta
     
-    # Validar que el nombre del rol no se repita
-    nombre_repetido = RolModel.query.filter_by(nombre_rol=datos['nombre_rol']).first() # Busca el primer registro que coincida.
-    if nombre_repetido:
-        return jsonify({'error': 'El nombre del rol ya existe'}), 400
-
-    db.session.add(nuevo_rol)
-    db.session.commit() # Guarda los cambios en la base de datos
-
-    return jsonify({'mensaje': 'Rol creado exitosamente', 'rol': {
-        'id': nuevo_rol.id,
-        'nombre_rol': nuevo_rol.nombre_rol
-    }}), 201
+    
