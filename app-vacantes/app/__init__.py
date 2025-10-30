@@ -6,6 +6,7 @@ load_dotenv()
 
 from app.routes.usuarios_routes import usuarios_bp
 from app.routes.roles_routes import roles_bp
+from app.routes.auth_routes import auth_bp as auth_bp
 from app.extensions import db, jwt
 from config import Config
 from app.models.UsuariosModel import UsuariosModel  # Importar el modelo para crear la tabla
@@ -36,5 +37,6 @@ def create_app():
     # Registrar blueprint
     app.register_blueprint(usuarios_bp, url_prefix='/usuarios')
     app.register_blueprint(roles_bp, url_prefix='/roles')
+    app.register_blueprint(auth_bp, url_prefix='/auth')
     
     return app
