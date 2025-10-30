@@ -1,14 +1,15 @@
 # En este archivo iran las rutas o EndPoints que tengan que ver con el CRUD de usuarios.
 
 from flask import Blueprint, jsonify, request
-from app.data import usuarios
 from app.service.UsuarioService import UsuarioService
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 # Se crea el Blueprint
 usuarios_bp = Blueprint('usuarios', __name__)
 
 # Listar usuarios
 @usuarios_bp.route('/', methods=['GET'])
+# @jwt_required() # Proteger la ruta con JWT
 def obtener_todos():
     usuarios = UsuarioService.obtener_usuarios()
     
@@ -33,24 +34,23 @@ def crear_usuario():
 # Buscar un usuario por id
 @usuarios_bp.route('/<int:usuario_id>', methods=['GET'])
 def obtener_usuario_por_id(usuario_id):
-    for usuario in usuarios:
-        if usuario['id'] == usuario_id:
-            return jsonify(usuario)
-    return jsonify({'error': 'Usuario no encontrado'}), 404
+    usuario = UsuarioService.obtener_usuario_por_id(usuario_id)
+    return usuario
 
 # Actualizar informacion de un usuario
 @usuarios_bp.route('/<int:usuario_id>', methods=['PUT'])
 def actualizar_usuario(usuario_id):
-    # Obtener_usuario_por_id devuelve JSON; buscamos el objeto en la lista
-    usuario_obj = next((u for u in usuarios if u['id'] == usuario_id), None)
-    if usuario_obj is None:
-        return jsonify({'error': 'Usuario no encontrado'}), 404
-
+    # Obtener los datos actualizados del usuario desde la solicitud
     datos_actualizados = request.get_json() or {}
 
-    if not datos_actualizados.get('nombre') or not datos_actualizados.get('password'):
-        return jsonify({'error': 'Faltan campo obligatorios'}), 400
+    # Llamar al servicio para actualizar el usuario
+    usuario = UsuarioService.actualizar_usuario(usuario_id, datos_actualizados)
 
-    usuario_obj.update(datos_actualizados)
+    return usuario
 
-    return jsonify({'Mensaje': 'Usuario actualizado exitosamente', 'Usuario': usuario_obj})
+# Eliminar un usuario por su id
+@usuarios_bp.route('/<int:usuario_id>', methods=['DELETE'])
+def eliminar_usuario(usuario_id):
+    # Llamar al servicio para eliminar el usuario
+    usuario = UsuarioService.eliminar_usuario(usuario_id)
+    return usuario
