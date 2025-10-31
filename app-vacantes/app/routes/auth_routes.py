@@ -23,10 +23,10 @@ def login():
         )
         refresh_token = create_refresh_token(identity=str(auth_usuario.id))
 
-    return jsonify({"message": "Login successful", "access_token": access_token, "refresh_token": refresh_token}), 200
+    return jsonify({"message": "Login exitoso", "access_token": access_token, "refresh_token": refresh_token}), 200
 
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.json
-    # Implement registration logic here
-    return jsonify({"message": "Registration successful"}), 201
+    
+    return jsonify({"message": "Registro existoso"}), 201
