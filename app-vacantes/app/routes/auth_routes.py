@@ -25,7 +25,7 @@ def login():
             access_token = create_access_token(
                 identity=str(auth_usuario.id), 
                 # opcional para agregar más información al token o si queremos hacer validaciones en endpoints
-                additional_claims={"role": nombre_rol, "id_usuario": str(auth_usuario.id)}
+                additional_claims={"role": nombre_rol, "id_usuario": str(auth_usuario.id), "nombre_usuario" : auth_usuario.nombre_usuario}
             )
             refresh_token = create_refresh_token(identity=str(auth_usuario.id))
 
