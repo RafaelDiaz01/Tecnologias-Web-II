@@ -20,6 +20,7 @@ class VacantesService:
         # Solo mostrar nombre, detalles y fecha
         detalles = {
             'nombre_vacante': vacante.nombre_vacante,
+            'descripcion': vacante.descripcion,
             'detalles': vacante.detalles,
             'fecha_publicacion': vacante.fecha_publicacion.isoformat() if vacante.fecha_publicacion else None,
             'fecha_edicion': vacante.fecha_edicion.isoformat() if vacante.fecha_edicion else None
@@ -45,7 +46,7 @@ class VacantesService:
     
 
     @staticmethod
-    def crear_vacante(nombre_vacante, descripcion, detalles, fecha_publicacion, fecha_edicion, estado, creador, postulador):
+    def crear_vacante(nombre_vacante, descripcion, detalles, fecha_publicacion, fecha_edicion, estado, id_creador, nombre_creador, postulador):
         
         # Validar campos obligatorios
         if not nombre_vacante or not descripcion:
@@ -63,7 +64,7 @@ class VacantesService:
             fecha_publicacion=fecha_publicacion,
             fecha_edicion=fecha_edicion,
             estado=estado,
-            creador=creador,
+            creador=id_creador,
             postulador=postulador
         )
 
@@ -74,7 +75,7 @@ class VacantesService:
 
             # Commit guarda los cambios en la base de datos
             db.session.commit()
-            return jsonify({'mensaje': 'Vacante creada exitosamente', 'vacante': nueva_vacante.to_dict()}), 201
+            return jsonify({'mensaje': 'Vacante creada exitosamente', 'vacante': nueva_vacante.to_dict(), 'Nombre del Creador' : nombre_creador}), 201
         except Exception as e:
             return jsonify({'error': 'Error al guardar la vacante en la base de datos', 'detalle': str(e)}), 500
 
@@ -86,6 +87,10 @@ class VacantesService:
         if not vacante:
             return jsonify({'error': 'Vacante no encontrada'}), 404
         
+         # Verificar si ya está asignada
+        if vacante.postulador is not None:
+            return jsonify({"error": "Vacante ya asignada"}), 400
+    
         # Actualizar el postulador de la vacante
         if 'postulador' in datos_actualizados:
             vacante.postulador = datos_actualizados['postulador']
