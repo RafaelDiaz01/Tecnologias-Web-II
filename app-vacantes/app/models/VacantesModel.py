@@ -1,6 +1,6 @@
 # En este archivo iran las tablas o modelos que se van a crear en la base de datos.
 from app.extensions import db  # Importar la instancia de db
-from datetime import datetime
+from datetime import datetime, timezone
 
 class VacantesModel(db.Model):
     __tablename__ = 'vacantes'  # Nombre de la tabla en la base de datos.
@@ -9,8 +9,8 @@ class VacantesModel(db.Model):
     nombre_vacante = db.Column (db.String(50), nullable = False, unique = True)
     descripcion = db.Column (db.Text)
     detalles = db.Column(db.Text)
-    fecha_publicacion = db.Column(db.DateTime, default=datetime.utcnow)
-    fecha_edicion = db.Column(db.DateTime, default=datetime.utcnow)
+    fecha_publicacion = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    fecha_edicion = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     estado = db.Column(db.String(20), default = "Disponible")
     creador = db.Column(db.String(50))
     postulador = db.Column(db.String(50))
