@@ -40,7 +40,6 @@ def obtener_vacante_por_id(vacante_id):
 @jwt_required() # Proteger la ruta con JWT
 def obtener_mis_vacantes():
     usuario_id = get_jwt().get('id_usuario')
-    print("ID del usuario desde el token JWT:", usuario_id)
     vacantes = VacantesService.obtener_vacantes_por_usuario(usuario_id)
 
     if not vacantes:
@@ -92,9 +91,11 @@ def crear_vacante():
     # Obtener el id de usuario para verificar si es un reclutador (solo el reclutador puedo crear vacantes)
     rol = get_jwt().get('role')
 
-    # Obtener el id del usuario para asignarlo a creador
-    creador = get_jwt().get('id_usuario')
+    # Obtener el nombre del usuario para mostrarlo
+    nombre_creador = get_jwt().get('nombre_usuario')
 
+    # Obtener el id del usuario para asignarlo a creador
+    id_creador = get_jwt().get('id_usuario')
 
     if rol != 'reclutador':
         return jsonify({'error': 'No tienes permisos para crear vacantes'}), 403
@@ -109,7 +110,8 @@ def crear_vacante():
         fecha_publicacion = nueva.get('fecha_publicacion'),
         fecha_edicion = nueva.get('fecha_edicion'),
         estado = nueva.get('estado'),
-        creador = creador,
+        id_creador = id_creador,
+        nombre_creador = nombre_creador,
         postulador = nueva.get('postulador')
     )
     return respuesta
