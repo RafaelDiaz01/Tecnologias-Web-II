@@ -1,10 +1,7 @@
-import './App.css'
-import Gallery from './components/Gallery'
+import AppRouter from "./router/AppRouter"
 
 function App() {
-  return (
-    <Gallery />
-  )
+  return <AppRouter />
 }
 
-export default App
+export default App;
