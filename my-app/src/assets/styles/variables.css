@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root {
+  --color-primario: #2563eb;
+  --color-secundario: #ef4444;
+  --color-acento: #fbbf24;
+
+  --color-fondo: #0f172a;
+  --color-texto: #ffffff;
+  --color-borde: #E0E0E0;
+
+  --fuente-principal: 'DM Sans', sans-serif;
+}
