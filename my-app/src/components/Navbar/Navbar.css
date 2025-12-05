@@ -1,0 +1,72 @@
+@import '../../assets/styles/variables.css';
+
+/* NAVBAR GENERAL */
+.navbar {
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-fondo);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 0 0 10px 10px;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+/* LADO DERECHO DEL NAVBAR */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* BOTÓN PRINCIPAL DE AÑADIR NUEVA TAREA */
+.btn-primary {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-hover);
+}
+
+/* BOTÓN DE AJUSTES */
+.settings-btn {
+  width: 38px;
+  height: 38px;
+  background-color: #1e293b;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-texto-secundario);
+  transition: background 0.2s, color 0.2s;
+}
+
+.settings-btn:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+/* BOTÓN DE PERFIL */
+.profile {
+  width: 38px;
+  height: 38px;
+  background-color: var(--color-acento);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.profile:hover {
+  opacity: 0.8;
+}
