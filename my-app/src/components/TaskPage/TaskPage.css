@@ -1,0 +1,113 @@
+@import '../../assets/styles/variables.css';
+
+/* CONTENEDOR GENERAL */
+.tasks-container {
+  color: var(--color-texto);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* TITULO */
+.tasks-title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.tasks-subtitle {
+  color: var(--color-texto-secundario);
+  margin-top: -12px;
+}
+
+/* BUSCADOR */
+.tasks-search {
+  width: 100%;
+  background-color: #1e293b;
+  border-radius: 10px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tasks-search input {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--color-texto);
+  font-size: 15px;
+}
+
+/* TARJETAS DE TAREAS */
+.task-card {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.task-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* BOTÓN COMPLETAR Y ELIMINAR */
+.btn-complete,
+.btn-delete {
+  color: var(--color-texto);
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-complete {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+}
+
+.btn-delete {
+  background-color: #ef4444;
+  color: var(--color-texto);
+}
+
+/* FILA DE TAREA */
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f2937;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: #e2e8f0;
+}
+
+/* COMPLETADAS */
+.completed-title {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.completed span {
+  text-decoration: line-through;
+  color: var(--color-texto-secundario);
+}
+
+/* HOVER */
+.task-item:hover span {
+  color: var(--color-texto);
+}
