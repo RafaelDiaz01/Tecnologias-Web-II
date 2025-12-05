@@ -1,0 +1,100 @@
+@import '../../assets/styles/variables.css';
+
+/* ESTILOS GENERALES DEL SIDEBAR */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  border-right: 1px solid var(--color-borde);
+  position: fixed;
+}
+
+/* HEADER */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.sidebar-header h2 {
+  color: var(--color-texto);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* NAV */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  color: var(--color-texto);
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* BOTONES */
+.nav-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background-color: transparent;
+  border: none;
+  color: var(--color-texto);
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+  background-color: #1e293b;
+}
+
+/* OPCIÓN SELECCIONADA */
+.selected {
+  background-color: var(--color-primario);
+  color: var(--color-texto) !important;
+}
+
+/* FOOTER */
+.sidebar-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #1e293b;
+}
+
+.workspace-avatar {
+  width: 38px;
+  height: 38px;
+  background-color: var(--color-acento);
+  border-radius: 50%;
+}
+
+.workspace-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.workspace-name {
+  color: var(--color-texto);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.workspace-type {
+  color: var(--color-texto-secundario);
+  font-size: 12px;
+}
