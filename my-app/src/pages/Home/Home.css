@@ -1,0 +1,17 @@
+@import '../../assets/styles/variables.css';
+
+.home-layout {
+  display: flex;
+}
+
+.home-content {
+  margin-left: 260px; /* ancho del sidebar */
+  width: calc(100% - 260px);
+  background-color: var(--color-fondo);
+  min-height: 100vh;
+}
+
+.page-content {
+  padding: 50px;
+  color: var(--color-texto);
+}
