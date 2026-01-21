@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
-import Swal from 'sweetalert2'
-import 'sweetalert2/dist/sweetalert2.min.css'
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 import "./TaskPage.css";
 
 // Recibe las tareas y la función para actualizar el estado desde el componente padre
@@ -39,7 +39,7 @@ const TaskPage = ({ tasks, setTasks, view }) => {
               : "No tienes tareas completadas."}
           </p>
         )}
-        
+
         {/* Mapea y muestra cada tarea en la lista correspondiente */}
         {listToShow.map((task) => (
           <div key={task.id} className="task-item">
@@ -62,6 +62,8 @@ const TaskPage = ({ tasks, setTasks, view }) => {
               <button
                 className="btn-complete"
                 onClick={() =>
+                  // t es la tarea actualizada
+                  // Recorre las tareas y actualiza el estado de completado de la tarea correspondiente
                   setTasks(
                     tasks.map((t) =>
                       t.id === task.id ? { ...t, completed: !t.completed } : t
@@ -69,7 +71,7 @@ const TaskPage = ({ tasks, setTasks, view }) => {
                   )
                 }
               >
-                { /* Muestra el texto del botón según el estado de la tarea */}
+                {/* Muestra el texto del botón según el estado de la tarea */}
                 {task.completed ? "Desmarcar" : "Completar"}
               </button>
 
@@ -78,22 +80,22 @@ const TaskPage = ({ tasks, setTasks, view }) => {
                 onClick={() => {
                   // Confirmación antes de eliminar
                   Swal.fire({
-                    title: '¿Eliminar tarea?',
-                    text: 'Esta acción no se puede deshacer.',
-                    icon: 'warning',
+                    title: "¿Eliminar tarea?",
+                    text: "Esta acción no se puede deshacer.",
+                    icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Sí, eliminar',
-                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Sí, eliminar",
+                    cancelButtonText: "Cancelar",
                   }).then((result) => {
                     if (result.isConfirmed) {
                       // Elimina la tarea si se confirma
                       setTasks(tasks.filter((t) => t.id !== task.id));
                       Swal.fire({
-                        icon: 'success',
-                        title: 'Eliminada',
-                        text: 'La tarea fue eliminada.',
+                        icon: "success",
+                        title: "Eliminada",
+                        text: "La tarea fue eliminada.",
                         timer: 1000, // se cierra automáticamente después de 1 segundo
                         showConfirmButton: false, // no mostrar el botón de confirmación
                       });
