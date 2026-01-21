@@ -1,0 +1,50 @@
+import { createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+    typography: {
+        fontFamily: "DM Sans, sans-serif",
+    },
+    components: {
+        MuiDataGrid: {
+            styleOverrides: {
+                root: {
+                    borderRadius: "1rem",
+                    overflow: "hidden",
+                    border: "none",
+                    boxShadow: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+                    backgroundColor: "#FFFFFF",
+                },
+
+                columnHeaders: {
+                    backgroundColor: "var(--color-primario)",
+                    borderBottom: "1px solid #E5E7EB",
+                },
+
+                columnHeadersInner: {
+                    backgroundColor: "var(--color-primario)",
+                },
+
+                columnHeader: {
+                    backgroundColor: "var(--color-primario)",
+                    color: "var(--color-texto)",
+                    fontWeight: 600,
+                    fontSize: "0.875rem",
+                },
+                cell: {
+                    color: "var(--color-texto)",
+                    display: "flex",
+                    alignItems: "center",
+                    // Elimina el borde al seleccionar una celda
+                    "&:focus": {
+                        outline: "none",
+                    },
+                    "&:focus-within": {
+                        outline: "none",
+                    },
+                }
+            },
+        },
+    },
+});
+
+export default theme;
