@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import TaskPage from "../../components/TaskPage/TaskPage.jsx";
@@ -10,9 +10,18 @@ const Home = () => {
   const [view, setView] = useState("pendiente"); // Estado para la vista actual, usamos pendiente por defecto
   const [tasks, setTasks] = useState([]); // Estado para almacenar las tareas
 
+  // UseEfects
+  useEffect(() => {
+    console.log("Las tareas han cambiado: ", tasks);
+  }, [tasks]);
+
+  useEffect(() => {
+    console.log("Componente montado");
+  } , []);
+
   // Función para agregar una nueva tarea al estado de tareas
   const addTask = (newTask) => {
-    setTasks([...tasks, newTask]);
+    setTasks([...tasks, newTask]); // Agrega la nueva tarea al array de tareas
     setShowModal(false); // cerrar modal después de guardar
   };
 
