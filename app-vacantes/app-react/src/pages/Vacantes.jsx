@@ -32,17 +32,25 @@ export default function Vacantes() {
     return (
         <PageLayout>
             <div className="w-full flex flex-col items-center justify-center">
-                <div className="max-w-3xl mx-auto" style={{ width: '100%' }}>
-                    <DataGrid
-                        rows={rows}
-                        columns={columns}
-                        pageSizeOptions={[5, 10]}
-                        initialState={{
-                            pagination: {
-                                paginationModel: { page: 0, pageSize: 5 },
-                            },
-                        }}
-                    />
+                <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg overflow-hidden animate-fade-in">
+                    <div className="bg-[var(--color-secundario)] px-6 py-4">
+                        <h2 className="text-[var(--color-texto-secundario)] text-lg font-semibold">
+                            Lista de Vacantes
+                        </h2>
+                    </div>
+
+                    <div className="max-w-3xl mx-auto p-6" style={{ width: '100%' }}>
+                        <DataGrid
+                            rows={rows}
+                            columns={columns}
+                            pageSizeOptions={[5, 10]}
+                            initialState={{
+                                pagination: {
+                                    paginationModel: { page: 0, pageSize: 5 },
+                                },
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
         </PageLayout>
