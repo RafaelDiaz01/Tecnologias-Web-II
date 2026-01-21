@@ -18,7 +18,7 @@ export default function Navbar() {
                 </h1>
 
                 <nav className="flex gap-3">
-                    <NavLink to="/login" className={linkClass}>
+                    <NavLink to="/crear-vacante" className={linkClass}>
                         <PlusCircle size={18} />
                         Crear Vacante
                     </NavLink>
