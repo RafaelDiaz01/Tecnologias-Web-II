@@ -1,0 +1,24 @@
+@import './_variables.css';
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-principal);
+}
+
+.login-diagonal-bg {
+  background-color: var(--color-fondo);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(168, 218, 220, 0.25) 0,
+    rgba(168, 218, 220, 0.25) 12px,
+    transparent 12px,
+    transparent 24px
+  );
+}
