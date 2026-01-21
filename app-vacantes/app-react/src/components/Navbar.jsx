@@ -23,7 +23,7 @@ export default function Navbar() {
                         Crear Vacante
                     </NavLink>
 
-                    <NavLink to="/" className={linkClass}>
+                    <NavLink to="/vacantes" className={linkClass}>
                         <Briefcase size={18} />
                         Vacantes
                     </NavLink>
