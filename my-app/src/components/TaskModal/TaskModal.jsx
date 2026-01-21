@@ -26,9 +26,8 @@ const TaskModal = ({ onClose, onSave }) => {
       return;
     }
 
-    // Validación para evitar título con menos de 3 palabras
-    const contadorPalabras = trimmedTitle.split(/\s+/).length;
-    if (contadorPalabras < 3) {
+    // Validación para evitar título con menos de 3 letras
+    if (trimmedTitle.length < 3) {
       alert("El título debe tener al menos 3 palabras.");
       return;
     }
@@ -71,8 +70,12 @@ const TaskModal = ({ onClose, onSave }) => {
           type="text"
           placeholder="Ej. Comprar despensa para la semana"
           className="modal-input"
-          value={title} // aquí va el estado del título 
-          onChange={(e) => setTitle(e.target.value)} // actualizar el estado al cambiar, e.target.value sirve para obtener el valor actual del input
+          value={title} // aquí va el estado del título
+          onChange={(e) => {
+            setTitle(e.target.value);
+            console.log("Texto ingresado: " + e.target.value);
+            console.log("Estado title: " + title);
+          }} // actualizar el estado al cambiar, e.target.value sirve para obtener el valor actual del input
         />
 
         <label>Descripción de la Tarea</label>
@@ -84,10 +87,14 @@ const TaskModal = ({ onClose, onSave }) => {
         ></textarea>
 
         <div className="modal-actions">
-          <button className="btn-cancel" onClick={onClose}> {/* al hacer click en cancelar se llama a onClose */}
+          <button className="btn-cancel" onClick={onClose}>
+            {" "}
+            {/* al hacer click en cancelar se llama a onClose */}
             Cancelar
           </button>
-          <button className="btn-save" onClick={handleSave}> {/* al hacer click en guardar se llama a handleSave */}
+          <button className="btn-save" onClick={handleSave}>
+            {" "}
+            {/* al hacer click en guardar se llama a handleSave */}
             Guardar
           </button>
         </div>
