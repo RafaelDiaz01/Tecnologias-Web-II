@@ -12,7 +12,7 @@ const linkClass = ({ isActive }) =>
 export default function Navbar() {
     return (
         <header className="w-full bg-[var(--color-fondo)] px-8 py-6">
-            <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <h1 className="text-lg font-semibold text-slate-700">
                     Vacantes <span className="text-[var(--color-secundario)]">App</span>
                 </h1>
