@@ -43,9 +43,9 @@ export default function Index() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <OfertaCard title="Heading" highlight />
-            <OfertaCard title="Heading" />
-            <OfertaCard title="Heading" />
+            <OfertaCard title="Chef" highlight text="Cocinero con experiencia en comida Japonesa"/>
+            <OfertaCard title="Programador BackEnd" text="Estamos en busca de un programador Senior con experiencia en SpringBoot"/>
+            <OfertaCard title="Tester" text="Se necesita tester para sistemas bancarios criticos."/>
           </div>
         </section>
       </div>
