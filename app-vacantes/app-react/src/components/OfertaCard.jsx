@@ -1,6 +1,6 @@
 import { ArrowRight, FileText } from "lucide-react";
 
-export default function OfertaCard({ title, highlight }) {
+export default function OfertaCard({ title, highlight, text }) {
   return (
     <div
       className={`bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-4
@@ -16,15 +16,12 @@ export default function OfertaCard({ title, highlight }) {
 
       {highlight && (
         <p className="text-sm text-red-500">
-          As of v8.0, Safari exhibits a bug.
+          No Disponible en este momento.
         </p>
       )}
 
       <p className="text-sm text-gray-600 leading-relaxed text-justify">
-        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-        ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa
-        justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-        Donec sed odio dui.
+        {text}
       </p>
 
       <button
