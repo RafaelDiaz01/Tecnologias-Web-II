@@ -6,6 +6,7 @@ import Vacantes from "../pages/Vacantes.jsx";
 import Detalle from "../pages/Detalle.jsx";
 import Mensaje from "../pages/Mensaje.jsx";
 import Index from "../pages/Index.jsx";
+import Acerca from "../pages/Acerca.jsx";
 
 const AppRouter = () => {
   return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
       <Route path="/vacantes" element={<Vacantes />} />
       <Route path="/detalle/:id" element={<Detalle />} />
       <Route path="/index" element={<Index />} />
+      <Route path="/acerca" element={<Acerca />} />
     </Routes>
   );
 };
